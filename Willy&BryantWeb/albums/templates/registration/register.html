@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .register-form {
+        background: linear-gradient(145deg, #1a1a1a 0%, #1a0a0a 100%);
+        border: 1px solid #333333;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 500px;
+    }
+    
+    .register-form h2 {
+        color: #c0c0c0;
+        text-align: center;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        color: #c0c0c0;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        background: #0a0a0a;
+        border: 1px solid #333333;
+        color: #ffffff;
+        font-family: 'Times New Roman', serif;
+    }
+    
+    .submit-btn {
+        background: linear-gradient(135deg, #8b0000 0%, #1a1a1a 100%);
+        color: #c0c0c0;
+        padding: 12px 25px;
+        border: 2px solid #ff2a2a;
+        cursor: pointer;
+        font-family: 'Times New Roman', serif;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .submit-btn:hover {
+        background: linear-gradient(135deg, #ff2a2a 0%, #8b0000 100%);
+        color: #000000;
+    }
+    
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #999999;
+    }
+    
+    .login-link a {
+        color: #c0c0c0;
+        text-decoration: none;
+    }
+    
+    .login-link a:hover {
+        color: #ff2a2a;
+        text-decoration: underline;
+    }
+    
+    .errorlist {
+        color: #ff2a2a;
+        list-style: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+    }
+</style>
+
+<div class="register-form">
+    <h2>Join the Metal Archives</h2>
+    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}" style="padding: 10px; margin: 10px 0; border-radius: 4px; text-align: center; background-color: {% if message.tags == 'success' %}#1a2a1a{% else %}#2a1a1a{% endif %}; color: {% if message.tags == 'success' %}#7fff7f{% else %}#ff7f7f{% endif %}; border: 1px solid {% if message.tags == 'success' %}#2a8b2a{% else %}#8b2a2a{% endif %};">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="id_username">Username</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password1">Password</label>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+        </div>
+        
+        <div class="form-group">
+            <label for="id_password2">Confirm Password</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+        </div>
+        
+        <button type="submit" class="submit-btn">Enter the Crypt</button>
+    </form>
+    
+    <div class="login-link">
+        Already have an account? <a href="{% url 'login' %}">Enter here</a>
+    </div>
+</div>
+{% endblock %}

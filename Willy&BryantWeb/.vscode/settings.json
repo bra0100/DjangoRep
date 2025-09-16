@@ -1,0 +1,11 @@
+{
+    "python.defaultInterpreterPath": "C:\\Users\\bryan\\.virtualenvs\\WillyAndBryant--zTGud3y\\Scripts\\python.exe",
+    "python.languageServer": "Pylance",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "python.analysis.typeCheckingMode": "off"
+}

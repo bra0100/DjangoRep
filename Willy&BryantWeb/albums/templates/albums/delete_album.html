@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="infernal-container">
+        <h2 style="text-align: center;">🔥 Final Ritual of Annihilation 🔥</h2>
+
+        <div class="album-card" style="max-width: 600px; margin: 0 auto; padding: 40px; text-align: center;">
+            <p style="color: var(--accent-red); font-size: 1.2em; text-transform: uppercase;">Are you sure you want to sacrifice this creation to the abyss?</p>
+            
+            <h3 style="color: var(--accent-metal); font-size: 1.6em; margin: 20px 0;">
+                "{{ object.album_title }}" by "{{ object.band_name }}"
+            </h3>
+            
+            <p style="color: var(--text-secondary); font-style: italic;">This action cannot be undone.</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="summon-button delete-confirm-btn" style="background-color: var(--accent-dark-red); border-color: var(--accent-red);">
+                    ⛧ Cast into the Void ⛧
+                </button>
+            </form>
+            
+            <a href="{% url 'album_list' %}" class="action-btn edit-btn" style="margin-top: 20px; display: inline-block;">
+                No, Retreat from the Abyss
+            </a>
+        </div>
+    </div>
+{% endblock content %}

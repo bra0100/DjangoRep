@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .edit-form {
+        background-color: #1a0000;
+        padding: 20px;
+        border: 1px solid #600;
+        margin: 20px 0;
+    }
+    .form-group {
+        margin: 15px 0;
+    }
+    label {
+        color: #ff6666;
+        display: block;
+        margin-bottom: 5px;
+    }
+    input, select {
+        background-color: #2a0000;
+        color: #fff;
+        border: 1px solid #600;
+        padding: 8px;
+        width: 100%;
+    }
+    .btn-danger {
+        background-color: #ff0000;
+        color: #000;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+    .btn-secondary {
+        background-color: #666;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+    }
+</style>
+
+
+<div class="edit-form">
+    <h1>⚡ EDIT DARK ART: {{ album.band }} - {{ album.title }}</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    
+    <!-- TITLE -->
+        <div class="form-group">
+            <label for="id_title">ALBUM TITLE:</label>
+            <input type="text" name="title" value="{{ form.title.value }}" id="id_title" required>
+        </div>
+    
+    <!-- BAND -->
+        <div class="form-group">
+            <label for="id_band">BAND NAME:</label>
+            <input type="text" name="band" value="{{ form.band.value }}" id="id_band" required>
+        </div>
+    
+    <!-- GENRE -->
+        <div class="form-group">
+            <label for="id_genre">GENRE OF DARKNESS:</label>
+            <input type="text" name="genre" value="{{ form.genre.value }}" id="id_genre" required>
+        </div>
+    
+    <!-- RELEASE DATE -->
+        <div class="form-group">
+            <label for="id_release_date">YEAR OF DAMNATION:</label>
+            <input type="date" name="release_date" value="{{ form.release_date.value|date:'Y-m-d' }}" id="id_release_date" required>
+        </div>
+    
+    <!-- COVER -->
+        <div class="form-group">
+            <label for="id_cover">DARK ART (Cover):</label>
+            <input type="file" name="cover" id="id_cover">
+            {% if album.cover %}
+                <p>Current cover: <img src="{{ album.cover.url }}" width="100"></p>
+            {% endif %}
+        </div>
+    
+        <button type="submit">UPDATE SACRIFICE</button>
+        <a href="{% url 'album_list' %}">CANCEL</a>
+</form>
+
+    
+    <!-- DEBUG: Verifica los datos -->
+    <div style="margin-top: 20px; color: #666;">
+        <h3>DEBUG INFO:</h3>
+        <p>Album ID: {{ album.id }}</p>
+        <p>Current Title: {{ album.title }}</p>
+        <p>Current Band: {{ album.band }}</p>
+        <p>Uploaded by: {{ album.uploaded_by }} (You: {{ user }})</p>
+    </div>
+</div>
+{% endblock %}
