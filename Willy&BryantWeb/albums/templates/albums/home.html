@@ -2,7 +2,7 @@
 
 {% block content %}
 <style>
-    /* HEADER GÓTICO */
+
     .main-header {
         text-align: center;
         margin-bottom: 50px;
@@ -94,8 +94,7 @@
         letter-spacing: 3px;
         margin-top: 10px;
     }
-    
-    /* BOTÓN PRINCIPAL */
+  
     .summon-button {
         display: inline-block;
         background: linear-gradient(135deg, var(--accent-dark-red) 0%, var(--bg-secondary) 100%);
@@ -118,7 +117,7 @@
         transform: translateY(-2px);
     }
     
-    /* SECCIÓN DE RECIENTES */
+  
     .recent-section {
         margin: 60px 0;
     }
@@ -133,8 +132,7 @@
         border-bottom: 1px solid var(--accent-red);
         padding-bottom: 15px;
     }
-    
-    /* GRID DE ÁLBUMES RECIENTES */
+ 
     .recent-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -142,7 +140,6 @@
         margin-top: 30px;
     }
     
-    /* BOTÓN PARA VER TODOS */
     .view-all-container {
         text-align: center;
         margin: 50px 0;
@@ -174,13 +171,13 @@
     <div style="position: absolute; top: 10px; left: 15px; color: #8b0000; font-size: 1.5em;">⛧</div>
 </div>
 
-<!-- ESTADÍSTICAS -->
+
 <div class="stats-container">
     <div class="stat-number">{{ total_albums }}</div>
     <div class="stat-label">Cursed Albums Summoned</div>
 </div>
 
-<!-- BOTÓN PARA AGREGAR ÁLBUM -->
+
 {% if user.is_authenticated %}
 <div style="text-align: center; margin: 50px 0;">
     <a href="{% url 'upload_album' %}" class="summon-button">
@@ -195,7 +192,7 @@
 </div>
 {% endif %}
 
-<!-- ÁLBUMES RECIENTES -->
+
 {% if recent_albums %}
 <div class="recent-section">
     <h2 class="section-title">Recent Sacrifices</h2>
@@ -227,7 +224,6 @@
 </div>
 {% endif %}
 
-<!-- BOTÓN PARA VER TODOS LOS ÁLBUMES -->
 <div class="view-all-container">
     <a href="{% url 'album_list' %}" class="summon-button">
         ⛧ View All Albums ⛧
