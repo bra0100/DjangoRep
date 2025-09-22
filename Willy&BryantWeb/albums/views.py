@@ -12,7 +12,7 @@ from django.urls import reverse_lazy
 from .models import Album
 from .forms import AlbumForm, CustomUserCreationForm
 
-# Vista para listar álbumes (basada en clase)
+
 
 
 class AlbumListView(ListView):
@@ -24,7 +24,7 @@ class AlbumListView(ListView):
     def get_queryset(self):
         return Album.objects.all().order_by('-id')
 
-# Vista para editar álbumes (basada en clase)
+
 
 
 class AlbumUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -46,10 +46,9 @@ class AlbumUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['editing'] = True  # ← Para saber que estamos editando
+        context['editing'] = True 
         return context
 
-# Vista para eliminar álbumes (basada en clase)
 
 
 class AlbumDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -68,7 +67,7 @@ class AlbumDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('album_list')
 
-# Vista para subir álbumes (basada en función)
+
 
 
 @login_required
@@ -88,38 +87,18 @@ def upload_album(request):
 
     return render(request, 'albums/upload_album.html', {'form': form})
 
-# Vista para registro de usuarios
-
-
-# def register(request):
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             messages.success(
-#                 request, 'Registration successful! Welcome to the Metal Archives.')
-#             return redirect('album_list')
-#         else:
-#             messages.error(request, 'Please correct the errors below.')
-#     else:
-#         form = CustomUserCreationForm()
-
-#     return render(request, 'registration/register.html', {'form': form})
-
 
 class HomeView(TemplateView):
     template_name = 'albums/home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Mostrar solo los últimos 3 álbumes en la página de inicio
+
         context['recent_albums'] = Album.objects.all().order_by('-id')[:3]
         context['total_albums'] = Album.objects.count()
         return context
 
 
-# Vista de login personalizada
 
 def custom_login(request):
     if request.user.is_authenticated:
@@ -142,7 +121,7 @@ def custom_login(request):
 
     return render(request, 'registration/login.html', {'form': form})
 
-# Vista de logout personalizada
+
 
 
 def custom_logout(request):
@@ -153,7 +132,7 @@ def custom_logout(request):
             request, f'Goodbye, {username}! You have been logged out.')
     return redirect('home')
 
-# Vista de registro (ya la tienes, pero la incluyo para completitud)
+
 
 
 def register(request):
