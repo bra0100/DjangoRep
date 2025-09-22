@@ -48,31 +48,30 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
     
-    <!-- TITLE -->
+
         <div class="form-group">
             <label for="id_title">ALBUM TITLE:</label>
             <input type="text" name="title" value="{{ form.title.value }}" id="id_title" required>
         </div>
     
-    <!-- BAND -->
+
         <div class="form-group">
             <label for="id_band">BAND NAME:</label>
             <input type="text" name="band" value="{{ form.band.value }}" id="id_band" required>
         </div>
     
-    <!-- GENRE -->
+
         <div class="form-group">
             <label for="id_genre">GENRE OF DARKNESS:</label>
             <input type="text" name="genre" value="{{ form.genre.value }}" id="id_genre" required>
         </div>
-    
-    <!-- RELEASE DATE -->
+
         <div class="form-group">
             <label for="id_release_date">YEAR OF DAMNATION:</label>
             <input type="date" name="release_date" value="{{ form.release_date.value|date:'Y-m-d' }}" id="id_release_date" required>
         </div>
     
-    <!-- COVER -->
+
         <div class="form-group">
             <label for="id_cover">DARK ART (Cover):</label>
             <input type="file" name="cover" id="id_cover">
@@ -86,7 +85,7 @@
 </form>
 
     
-    <!-- DEBUG: Verifica los datos -->
+
     <div style="margin-top: 20px; color: #666;">
         <h3>DEBUG INFO:</h3>
         <p>Album ID: {{ album.id }}</p>
