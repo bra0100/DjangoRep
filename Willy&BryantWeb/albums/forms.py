@@ -20,7 +20,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class AlbumForm(forms.ModelForm):
-    # Campos adicionales para dividir la fecha
+    
     release_day = forms.ChoiceField(
         choices=[(str(i).zfill(2), str(i)) for i in range(1, 32)])
     release_month = forms.ChoiceField(choices=[
@@ -40,7 +40,7 @@ class AlbumForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Establecer valores iniciales para la fecha si estamos editando
+
         if self.instance and self.instance.pk and self.instance.release_date:
             self.fields['release_day'].initial = self.instance.release_date.strftime(
                 '%d')
@@ -54,7 +54,7 @@ class AlbumForm(forms.ModelForm):
         if user:
             album.uploaded_by = user
 
-        # Construir la fecha a partir de los campos individuales
+       
         day = self.cleaned_data['release_day']
         month = self.cleaned_data['release_month']
         year = self.cleaned_data['release_year']
@@ -62,7 +62,7 @@ class AlbumForm(forms.ModelForm):
 
         if commit:
             album.save()
-            # Necesario para procesar la imagen
+
             if hasattr(self, 'save_m2m'):
                 self.save_m2m()
         return album
