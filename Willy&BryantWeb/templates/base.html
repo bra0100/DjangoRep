@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WILLY & BRYANT METAL ARCHIVES</title>
     <style>
-        /* PALETA GÓTICA - NEGRO, ROJO SANGRE Y PLATA */
+      
         :root {
-            --bg-primary: #0a0a0a;           /* Negro absoluto */
-            --bg-secondary: #1a1a1a;         /* Negro carbón */
-            --accent-red: #ff2a2a;           /* Rojo sangre vibrante */
-            --accent-metal: #c0c0c0;         /* Plata metálica */
-            --accent-dark-red: #8b0000;      /* Rojo oscuro */
-            --text-primary: #ffffff;         /* Blanco puro */
-            --text-secondary: #999999;       /* Gris humo */
-            --border-accent: #333333;        /* Bordes oscuros */
+            --bg-primary: #0a0a0a;           
+            --bg-secondary: #1a1a1a;        
+            --accent-red: #ff2a2a;           
+            --accent-metal: #c0c0c0;         
+            --accent-dark-red: #8b0000;      
+            --text-primary: #ffffff;         
+            --text-secondary: #999999;       
+            --border-accent: #333333;        
         }
         
         body {
@@ -25,7 +25,7 @@
             padding: 0;
         }
         
-        /* BARRA DE NAVEGACIÓN */
+        
         .nav-container {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, #2a0a0a 100%);
             border-bottom: 2px solid var(--accent-red);
@@ -75,14 +75,14 @@
             margin-right: 15px;
         }
         
-        /* CONTENEDOR PRINCIPAL */
+        
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        /* MENSAJES */
+      
         .messages {
             margin: 20px 0;
         }
@@ -114,7 +114,7 @@
     </style>
 </head>
 <body>
-    <!-- BARRA DE NAVEGACIÓN -->
+    
 <nav class="nav-container">
     <a href="{% url 'home' %}" class="nav-title">⛧ METAL ARCHIVES ⛧</a>
     
@@ -125,7 +125,7 @@
             <a href="{% url 'album_list' %}" class="nav-button">View All</a>
             <a href="{% url 'upload_album' %}" class="nav-button">Add Album</a>
             
-            <!-- FORMULARIO PARA LOGOUT (POST) -->
+            
             <form method="post" action="{% url 'logout' %}" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="nav-button" >
@@ -142,9 +142,9 @@
     </div>
 </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
+   
     <div class="main-container">
-        <!-- MENSAJES -->
+       
         {% if messages %}
         <div class="messages">
             {% for message in messages %}
@@ -155,7 +155,7 @@
         </div>
         {% endif %}
 
-        <!-- CONTENIDO DE LA PÁGINA -->
+        
         {% block content %}
         {% endblock %}
     </div>
