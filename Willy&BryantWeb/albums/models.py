@@ -5,7 +5,7 @@ from datetime import date
 
 
 def cover_upload_path(instance, filename):
-    # Generar un nombre único para el archivo
+
     ext = filename.split('.')[-1]
     filename = f"{instance.band}_{instance.title}_{instance.id}.{ext}".replace(
         ' ', '_').lower()
